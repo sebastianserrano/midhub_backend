@@ -1,0 +1,120 @@
+Stripe.accounts.create({
+	type: 'custom',
+	country: 'US',
+	email: 'receiver1@example.com'
+}, function(err, account) {
+	console.log(account);
+});
+
+var payment_method = TestTokens['Visa'];
+var metadata = {
+	'email': 'receiver1@example.com',
+	'currency': 'cad'
+}
+
+const payment_customer = new PaymentCustomer(Stripe, payment_method, metadata);
+payment_customer.createCustomer((error, response) => {
+	expect(response).to.be.a('object');
+	done()
+});
+}).timeout(5000);
+
+Stripe.charges.create({
+	amount: 1000,
+	currency: "cad",
+	capture: "false", "Issues a pre-authorization, needs to be captured later. Uncaptured charges expired in seven days!"
+	customer: "cus_DulsxVyKgc9lWn", //Customer account attached to connect account, 'Must be a source value or an empty object'
+	source: 'card_1DSxvDIuaqSbzEWEX3sK08gH', //Which card to use for payment, if not specified, default is used, 'Must be a source value or an empty object'
+	destination: {
+		amount: 500,	//Amount for the destination account to receive in total
+		account: "acct_1DSwJWBwYdagIVNA",	//Connect account receiving the funds stated above
+	},
+}).then(function(charge) {
+	console.log(charge);
+});
+
+Stripe.customers.retrieve(
+"cus_DulsxVyKgc9lWn",
+function(err, customer) {
+	console.log(customer.sources.data) //Customer.sources.data has the card/s information
+	}
+);
+
+Stripe.customers.createSource( //Attach an extra card to customer, this function does not change the default. Just adds
+card_1E54WtIuaqSbzEWENGpONItl
+"cus_DulsxVyKgc9lWn",
+{ source: TestTokens['Amex'] },
+"btok_1DTHlOIuaqSbzEWECERaQPgI" //Token for bank account
+function(err, source) {
+	console.log(source);
+}
+);
+
+// Recommended: sending API key with every request
+stripe.customers.create(
+  { email: 'person@example.edu' },
+  { api_key: '{{CONNECTED_ACCOUNT_SECRET_KEY}}' } // account's access token from the Connect flow
+);
+For Custom accounts, it’s in the keys[secret] property returned by the create account API call
+
+stripe.refunds.create({
+  charge: "ch_1DTH0JIuaqSbzEWEFgHnbBDX",
+	amount: Amount to give back
+}, function(err, refund) {
+  // asynchronously called
+});
+
+refund(refund_fee,transaction_id, callback){
+	this.platform.refunds.create({
+		charge: transaction_id,
+		amount: refund_fee, //Fee to charge refunded customer for refund transaction
+		reverse_transfer: true,
+	}).then(function(refund) {
+		callback(null, refund);
+	});
+}
+
+stripe.payouts.create({
+  amount: 1000,
+  currency: "cad",
+}, {
+  stripe_account: "{CONNECTED_STRIPE_ACCOUNT_ID}",
+}).then(function(payout) {
+  // asynchronously called
+});
+
+Stripe.accounts.createExternalAccount(
+"acct_1DSwJWBwYdagIVNA",
+	{ external_account: "tok_mastercard_debit" },
+function(err, bank_account) {
+	console.log(bank_account);
+	}
+);
+
+Stripe.accounts.update(
+	"acct_1DSwJWBwYdagIVNA",
+	{
+		tos_acceptance: {
+			date: Math.floor(Date.now() / 1000),
+			ip: "128.32.43.234"
+		}
+	}, function(error, response) {
+			console.log(error)
+			console.log(response)
+	}
+);
+
+Stripe.balance.retrieve({ api_key: "asdfa" }, function(err, balance) {
+	console.log(balance)
+});
+Returns a balance object for the account that was authenticated in the request.
+
+You cannot supply a `destination` when charging a connected account
+You cannot charge a 'customer' with its ID as a 'source parameter' in stripe.charges.create
+
+Steps for overall user creation as far as payments go
+Step 1:
+ Create 'customer' account and cache id upon success
+
+Step2:
+	Create 'connect' account and attach previous customer id in metadata

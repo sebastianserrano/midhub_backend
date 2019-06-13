@@ -1,0 +1,35 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Server/Server.js",
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "express-jwt": "^5.3.1",
+    "jsonwebtoken": "^8.4.0",
+    "pg-promise": "^8.5.2",
+    "plaid": "^2.10.0",
+    "stripe": "^6.19.0",
+    "twilio": "^3.27.1",
+    "twilio-video": "^1.14.1",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9",
+    "request": "^2.88.0"
+  },
+  "scripts": {
+    "start": "nodemon",
+    "test": "mocha \"ServerComponents/**/*.test.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
