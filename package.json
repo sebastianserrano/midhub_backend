@@ -1,7 +1,10 @@
 {
-  "name": "backend",
+  "name": "midhub_backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Midhub Backend is the server implementation of the original project \"Midhub\" that currently runs on nodejs",
+  "author": "Sebastian Serrano",
+  "license": "MIT",
+  "homepage": "https://github.com/sebastianserrano/midhub_backend",
   "main": "Server/Server.js",
   "dependencies": {
     "bluebird": "^3.5.3",
