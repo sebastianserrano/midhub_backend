@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <h1 align="center">Welcome to midhub_backend 👋</h1>
 <p>
   <img src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
@@ -31,14 +30,3 @@ npm run test
 👤 **Sebastian Serrano**
 
 * Github: [@sebastianserrano](https://github.com/sebastianserrano)
-
-## Show your support
-
-Give a ⭐️ if this project helped you !
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
-=======
-# midhub_backend
-Midhub Backend is the server implementation of the original project "Midhub" that currently runs on nodejs
->>>>>>> dfd7b46fe9c2ec2c54581158a47152f825035d28
